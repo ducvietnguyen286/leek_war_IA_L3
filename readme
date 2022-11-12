@@ -1,0 +1,182 @@
+Projet C Avancé fait par : 
+Duc Viet NGUYEN &  Théo GAYANT
+
+Pour compiler et executer le programme :
+Compiler -> make
+Executer -> ./main
+
+Nous avons implémenté toutes les fonctionnalités demandées et notre programme sans aucun bug !
+
+Nous avons reparti notre programme en six fichiers qui sont : 
+1. commande.c
+2. commande.h
+3. init.c
+4. init.h
+5. main.c
+6. makefile
+
+---------------------- commande.c ----------------------
+Dans ce fichier nous avons écris les lignes de code pour les fonctions qui se trouvent dans le fichier commande.h
+
+A. int verifier_entier(char *ch)
+--------------------------------
+Cette fonction nous permet de prendre en entrée une chaine de caractère pour tester si elle est un entier et nous
+retourne 1 pour vrai sinon 0 pour faux.
+
+B. int lance_commande(char *cmd, Donnees d, Camp *c1, Camp *c2, int * go, int *interrupt)
+-----------------------------------------------------------------------------------------
+Cette fonction nous aide à gérer les commandes entrées par l'utilisateur et retourne un entier en focntion de l'entrée.
+Elle prend en paramètres une chaine de caractere pour la commande, une structure Donnees, les deux camps, un pointeur vers
+un entier nommé "go" qui nous aidera à restreindre l'accès aux commandes de la gestion du jeu une fois le duel lancé, et ne
+considérer que les commandes nécessaires pour le combat, et aussi un autre pointeur vers un entier "interrupt" pour alterner
+le tour de chaque camp.
+
+C. void show_vegetables(Champion * tab)
+---------------------------------------
+Cette méthode nous permet d'afficher tous les legumes et prend en paramètre un tableau des Champions.
+
+D. void show_vegetables_i(Champion * tab, int i)
+------------------------------------------------
+Cette méthode nous permet d'afficher le legume à l'indice i.
+
+E. void show_fruits(Champion * tab)
+-----------------------------------
+Cette méthode nous permet d'afficher tous les fruits et prend en paramètre un tableau des Champions.
+
+G. void show_fruits_i(Champion * tab, int i)
+------------------------------------------------
+Cette méthode nous permet d'afficher le fruit à l'indice i.
+
+H. void show_weapons(Arme * tab)
+-----------------------------------
+Cette méthode nous permet d'afficher tous les armes et prend en paramètre un tableau d'Armes.
+
+I. void show_weapons_i(Arme * tab, int i)
+------------------------------------------------
+Cette méthode nous permet d'afficher l'arme à l'indice i.
+
+J. void show_protections(Protection * tab)
+-----------------------------------
+Cette méthode nous permet d'afficher tous les protections et prend en paramètre un tableau des Protections.
+
+K. void show_protections_i(Champion * tab, int i)
+------------------------------------------------
+Cette méthode nous permet d'afficher la protection à l'indice i.
+
+L. void show_cares(Soin * tab)
+-----------------------------------
+Cette méthode nous permet d'afficher tous les soins et prend en paramètre un tableau des Soin.
+
+M. void show_cares_i(Soin * tab, int i)
+------------------------------------------------
+Cette méthode nous permet d'afficher le soin à l'indice i.
+
+N. int choix_id(Donnees d,char c)
+---------------------------------
+Cette fonction nous permet de recupérer  l'indice choisi par l'utilisateur.
+Elle prend en paramètre une Donnees et un char.
+
+O. int acheter_ca(int credit)
+-----------------------------
+Cette fonction nous d'effectuer l'opération d'achat de CA.
+
+P. int Round(float nb)
+----------------------
+Cette fonction permet d'arrondir à l'entier le plus proche.
+
+Q. int combattant_minimum(Donnees d, Type type)
+-----------------------------------------------
+Cette fonction permet de recupérer le champion qui a le plus petit CE selon le Type soit Legume soit Fruit.
+Et ce champion est celui qui est choisi par son camp pour combattre c'est pourquoi nous l'appelons "combattant".
+
+R. int arme_minimum(Donnees d)
+------------------------------
+Cette fonction permet de recupérer l'arme qui a le plus petit CE.
+
+S. Combattant *selection(Camp *c, Donnees d)
+--------------------------------------------
+Cette fonction permet aux camps de choisir leur combattant ainsi que son arme, sa protection et son soin.
+
+T. void affiche_combat(Camp *c1, Camp *c2)
+------------------------------------------
+Cette méthode permet d'afficher le combat en prenant en paramètre les deux camps.
+
+U. int fight(Camp *c1, Camp *c2, Donnees d)
+-------------------------------------------
+Cette fonction permet de lancer le combat entre les deux combattants de chaque camp.
+Elle vérifie d'abord si chaque camp possède un minimum de CE pour s'acheter un champion
+et une arme sinon le combat ne peut pas commencer.
+
+V. void show(Camp *c)
+---------------------
+Cette méthode permet d'afficher les caracteristiques du combattant du Camp *c,
+de son arme, de sa protection ainsi de son soin.
+
+W. void move_forward(Combattant *comb1, Combattant *comb2,int pas,int interrupt)
+--------------------------------------------------------------------------------
+Cette méthode permet de faire avancer le combattant au nombre de pas et en tenant compte d'alterner le tour de
+chaque camp avec l'argument "interrupt".
+
+X. void sub_use_weapon(Combattant *comb1, Combattant *comb2,int nb, int interrupt)
+----------------------------------------------------------------------------------
+Cette méthode permettra de gérer l'utilisation de l'arme par le combattant "n" fois dans la méthode "use_weapon".
+
+Y. void use_weapon(Combattant *comb1, Combattant *comb2,int nb, int interrupt)
+------------------------------------------------------------------------------
+Cette méthode permet de gérer si le coup porté par un combattant contre son adversaire n'est pas hors portée puis fait appel
+à la méthode "sub_use_weapon" sinon le coup est hors portée.
+
+Z. void use_protection(Combattant *comb)
+----------------------------------------
+Cette méthode permet d'afficher si le champion revet sa protection s'il a de CA suffisant, sinon il s'est déjà revetue de cela
+soit il ne l'a pas.
+
+AA. void use_care(Camp *c, int nb)
+----------------------------------
+Cette méthode permet d'afficher si le champion utilise son soin s'il a de CA suffisant, sinon il s'est déjà revetu de cela
+soit il ne l'a pas.
+
+AB. int gain(int cePerdant, int ceGagnant)
+------------------------------------------
+Cette fonction permet de calculer le gain à l'issue du combat en prenant en paramètre les CE du perdant et du vainqueur.
+
+------------------------ init.h ------------------------
+Dans ce fichier, nous avons créer toutes nos structures et certaines fonctions:
+--- Structures ---
+A. Champion
+B. Arme
+C. Protection
+D. Soin
+E. Combattant
+D. Camp
+
+--- Fontions ---
+A. Champion * creer_champion(void)
+----------------------------------
+Permet de créer un tableau des champions
+
+B. Arme * creer_arme(void)
+--------------------------
+Permet de créer un tableau des armes
+
+C. Protection * creer_protection(void)
+--------------------------------------
+Permet de créer un tableau des rotections
+
+D. Soin * creer_soin(void)
+--------------------------
+Permet de créer un tableau des soins
+
+E. Camp * creer_camp(Type t, char *nom) 
+---------------------------------------
+Permet de créer le camp en prenant le type et le nom en paramètres.
+
+D. Combattant * creer_combattant(Champion c, Arme a, Protection p, Soin s)
+--------------------------------------------------------------------------
+Permet de créer le combattant.
+
+
+------------------------ init.c ------------------------
+Dans ce fichier nous initialions tous les tableaux nécessaires
+
+
